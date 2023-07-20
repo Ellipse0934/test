@@ -16,7 +16,11 @@ jobs:
     - name: "Setup Formatter Susimage"
       shell: bash
       run: |
-        wget https://github.com/Ellipse0934/julia-formatter-sysimage/releases/download/init/FormatterSysimage.so
+        wget --quiet https://github.com/Ellipse0934/julia-formatter-sysimage/releases/download/init/FormatterSysimage.so
+    - name: "ls"
+      shell: bash
+      run: |
+        ls -la
     - name: "Run Formatter"
       shell: bash
       run: |
