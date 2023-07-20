@@ -1,0 +1,27 @@
+name: Formatter
+on:
+  pull_request:
+    paths:
+      - "**.jl"
+      - ".JuliaFormatter.toml"
+jobs:
+  format:
+    runs-on: ubuntu-latest 
+    steps:
+    - uses: actions/checkout@v3
+    - name: "Set up Julia"
+      uses: julia-actions/setup-julia@v1
+      with:
+        version: '1.9' 
+    - name: "Setup Formatter Susimage"
+      shell: bash
+      run: |
+        wget --quiet https://github.com/Ellipse0934/julia-formatter-sysimage/releases/download/init/FormatterSysimage.so
+    - name: "ls"
+      shell: bash
+      run: |
+        ls -la
+    - name: "Run Formatter"
+      shell: bash
+      run: |
+        julia -J FormatterSysimage.so -e 'using JuliaFormatter; format(".")'
